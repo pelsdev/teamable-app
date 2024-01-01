@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teamable</title>
+    <script src="app.js"></script>
   </head>
 
   <body>
@@ -14,11 +15,31 @@
       </header>
       <img src="images/photo-1611003228941-98852ba62227.avif" alt="dog" />
       <div class="user">
-        <p class="field">Name: <b>Amiah Scott</b></p>
-        <p class="field">Email: <b>amiah@gmail.com</b></p>
-        <p class="field">Interest: <b>Zoology</b></p>
+        <p class="field">Name: <b id="name">Amiah Scott</b></p>
+        <p class="field">Email: <b id="email">amiah@gmail.com</b></p>
+        <p class="field">Interest: <b id="interest">Zoology</b></p>
       </div>
-      <button>Edit Profile</button>
+      <button onclick="handleEditProfile()">Edit Profile</button>
+    </div>
+    <div id="edit-profile">
+      <header>
+        <h1>User Profile</h1>
+      </header>
+      <img src="images/photo-1611003228941-98852ba62227.avif" alt="dog" />
+      <div class="user">
+        <p class="field">
+          Name: <input id="name-input" type="text" placeholder="Amiah Scott" />
+        </p>
+        <p class="field">
+          Email:
+          <input id="email-input" type="text" placeholder="amiah@gmail.com" />
+        </p>
+        <p class="field">
+          Interest:
+          <input id="interest-input" type="text" placeholder="Zoology" />
+        </p>
+      </div>
+      <button onclick="handleUpdateProfile()">Update Profile</button>
     </div>
   </body>
 </html>
