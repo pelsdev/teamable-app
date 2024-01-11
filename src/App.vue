@@ -1,5 +1,5 @@
 <template>
-    <div id="main">
+    <div v-show="!isEditMode" >
       <header>
         <h1>User Profile</h1>
       </header>
@@ -11,22 +11,22 @@
       </div>
       <button @click="handleEditProfile">Edit Profile</button>
     </div>
-    <div id="edit-profile">
+    <div v-show="isEditMode" >
       <header>
         <h1>User Profile</h1>
       </header>
       <img :src="image" alt="dog" />
       <div class="user">
         <p class="field">
-          Name: <input id="name-input" type="text" :placeholder="name" />
+          Name: <input id="name-input" type="text" v-model="name" />
         </p>
         <p class="field">
           Email:
-          <input id="email-input" type="text" :placeholder="email" />
+          <input id="email-input" type="text" v-model="email" />
         </p>
         <p class="field">
           Interest:
-          <input id="interest-input" type="text" :placeholder="interest" />
+          <input id="interest-input" type="text" v-model="interest" />
         </p>
       </div>
       <button @click="handleUpdateProfile">Update Profile</button>
@@ -43,33 +43,18 @@ import image from "./profile.jpeg"
             image: image,
             name: "Amiah Scott",
             email: "amiah@gmail.com",
-            interest: "Zoology"
+            interest: "Zoology",
+            isEditMode: false
+            
           }
         },
         methods: {
           handleEditProfile() {
-     document.getElementById("name-input").value = document.getElementById("name").textContent
-    
-     document.getElementById("email-input").value= document.getElementById("email").textContent
-    
-     document.getElementById("interest-input").value= document.getElementById("interest").textContent
-    
-     
-    document.getElementById("edit-profile").style.display="block"
-    
-    document.getElementById("main").style.display="none"
-
+            this.isEditMode = true
+   
 },
-handleUpdateProfile() {
-    document.getElementById("main").style.display="block"
-    document.getElementById("edit-profile").style.display="none"
-    const name = document.getElementById("name-input").value
-    const email = document.getElementById("email-input").value
-    
-    const interest = document.getElementById("interest-input").value
-    document.getElementById("name").textContent = name
-    document.getElementById("email").textContent = email
-    document.getElementById("interest").textContent = interest
+          handleUpdateProfile() {
+            this.isEditMode = false
 }
         }
     }
@@ -111,7 +96,5 @@ input{
     font-size: 15px;
     padding: 10px;
 }
-#edit-profile {
-    display: none;
-}
+
 </style>
