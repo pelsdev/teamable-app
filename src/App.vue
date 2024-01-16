@@ -41,21 +41,50 @@ import image from "./profile.jpeg"
         data() {
           return {
             image: image,
-            name: "Amiah Scott",
-            email: "amiah@gmail.com",
-            interest: "Zoology",
+            name: "",
+            email: "",
+            interest: "",
             isEditMode: false
             
           }
+        },
+       async created(){
+       const userData = await this.fetchUserProfile()
+        this.name = userData.name
+        this.email = userData.email
+        this.interest = userData.interest
         },
         methods: {
           handleEditProfile() {
             this.isEditMode = true
    
 },
-          handleUpdateProfile() {
+        async  handleUpdateProfile() {
+            const payload = {
+              name: this.name,
+              email: this.email,
+              interest: this.interest
+            }
+           const resJson = await this.updateUserProfile(payload)
+           console.log(resJson)
+
             this.isEditMode = false
-}
+},
+      async  fetchUserProfile(){
+      const res = await fetch('get-profile')
+      return await res.json()
+        },
+        async updateUserProfile(payload){
+         const res = await fetch('update-profile', {
+            method: "POST",
+            headers:{
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+          return await res.json()
+        }
         }
     }
 </script>
