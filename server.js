@@ -12,14 +12,21 @@ app.use(bodyParser.json())
 app.use('/', express.static(__dirname + '/dist'))
 
 app.get('/get-profile', async (req, res) =>{
-   const response = {
-        name: "Amiah Scott",
-        email: "amiah@gmail.com",
-        interest: "Zoology"
- }
-
+   
    await client.connect()
    console.log('Connected successfully to server')
+
+   const db = client.db(dbName)
+   const collection = db.collection(collName)
+
+   const result = await collection.findOne({id: 1})
+        console.log(result)
+
+    const response = {
+        name: result.name,
+        email: result.email,
+        interest: result.interest 
+    }
 
     res.send(response)
 })
