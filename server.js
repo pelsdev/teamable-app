@@ -21,13 +21,18 @@ app.get('/get-profile', async (req, res) =>{
 
    const result = await collection.findOne({id: 1})
         console.log(result)
+        client.close()
 
-    const response = {
-        name: result.name,
-        email: result.email,
-        interest: result.interest 
+        response = {}
+
+    if (result !== null) {
+         response = {
+            name: result.name,
+            email: result.email,
+            interest: result.interest 
+        }
+    
     }
-
     res.send(response)
 })
 
