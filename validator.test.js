@@ -27,11 +27,9 @@ test('empty payload', function(){
 })
 
 test('non-empty payload', function(){
-    const testPayload = {
-        name: "test name",
-        email: "test.email@exapmle.com",
-        interest: "testing"
-    }
+    const testPayload = { name: "test name",
+    email: "test.email@exapmle.com",
+    interest: "testing"}
     const result = isEmptyPayload(testPayload)
     expect(result).toBe(false)
 })
