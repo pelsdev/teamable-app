@@ -1,4 +1,4 @@
-const {app, server} = require('./server')
+const {app, server} = require('../server')
 const request = require('supertest')
 
 test("test request with valid payload", async function(){
